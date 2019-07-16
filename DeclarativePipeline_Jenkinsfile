@@ -26,7 +26,7 @@ pipeline
         {
             steps
             {
-                sh 'scp /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war ec2-user@172.31.90.73:/usr/share/tomcat/webapps/qaenv.war --ssh-common-args=' -o StrictHostkeyChecking=no''
+                sh 'scp /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war ec2-user@172.31.90.73:/usr/share/tomcat/webapps/qaenv.war --ssh-common-args='-o StrictHostkeyChecking=no''
             }
 	    
 	}
