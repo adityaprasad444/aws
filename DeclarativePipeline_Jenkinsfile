@@ -1,0 +1,34 @@
+pipeline
+{
+    agent any
+	tools
+	{
+	 jdk 'JAVA_HOME'
+	 maven 'MAVEN_HOME'
+	}
+    stages
+    {
+        stage('ContDownload')
+        {
+            steps
+            {
+                checkout scm
+            }
+        }
+        stage('ContBuild')
+        {
+            steps
+            {
+                sh 'mvn package'
+            }
+        }
+        stage('ContDeployment')
+        {
+            steps
+            {
+                sh 'scp /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war ec2-user@172.31.90.73:/usr/share/tomcat/webapps/qaenv.war'
+            }
+        }
+		
+    }
+}
