@@ -26,7 +26,9 @@ pipeline
         {
             steps
             {
-                sh 'scp /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war ec2-user@172.31.92.40:/opt/apache-tomcat-8.5.43/webapps/'
+                sshagent (credentials: ['deploy-dev']) {
+                 sh 'ssh -o StrictHostKeyChecking=no /var/lib/jenkins/workspace/Declarative_Pipeline/webapp/target/webapp.war ec2-user@172.31.92.40:/opt/apache-tomcat-8.5.43/webapps/'
+                }
             }
 	    
 	}
